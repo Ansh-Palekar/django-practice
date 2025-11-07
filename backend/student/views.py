@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import serializers
 from .models import Student
-
+from teacher.models import Teacher
+from teacher.serializer import TeacherSerializer,EventSerializer
 
 # Create your views here.
 @api_view(["GET"])
@@ -33,4 +35,34 @@ def loginStudent(request):
 
 @api_view(["POST"])
 def submitForm(request):
+    division=request.data.get("division")
+    event_teacher=request.data.get("event_teacher")
+    prn=request.data.get("prn")
+
+
+    try:
+        class_teacher_obj=Teacher.objects.get(division=division)
+        event_teacher_obj=Teacher.objects.get(name=event_teacher)
+    
+        student_obj=Student.objects.get(prn=prn)
+
+        student_id=student_obj.id
+        class_teacher_id=class_teacher_obj.id
+        event_teacher_id=event_teacher_obj.id
+
+        
+    except:
+        return Response({"message":"Teacher Not Found"})
+    
+    try:
+        serializer=EventSerializer(data={"prn":student_id,"class_teacher":class_teacher_id,"event_teacher":event_teacher_id,"status":"Fail"})
+
+        if serializer.is_valid():
+            serializer.save()
+        else:
+            print(serializer.errors)
+
+    except:
+        return Response({"message":f"{serializer.errors}"})
+
     return Response({"message":"Form Submitted"})
