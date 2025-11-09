@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns=[
     path('loginTeacher/',views.loginTeacher),
+    path("fetchForClassTeacher/",views.fetchForClassTeacher)
 ]
