@@ -61,6 +61,22 @@ def fetchForEventTeacher(request):
             student_names.append(name)
 
     return Response({"student_list":student_names})
-    
 
-    
+
+@api_view(["POST"])
+def approve(request):
+    student_name=request.data.get("student_name")
+    try:
+        student_obj=Student.objects.get(name=student_name)
+    except Exception as e:
+        return Response({"message":f"{e}"})
+            
+    try:
+        event_obj=Event.objects.get(prn=student_obj)
+        event_obj.status="Pass"
+        event_obj.save()
+        
+    except Exception as e:
+        return Response({"message":f"{e}"})    
+    return Response({"message":"Student Approved"})
+
