@@ -48,7 +48,7 @@ def submitForm(request):
         return Response({"message":"Teacher Not Found"})
     
     try:
-        serializer=EventSerializer(data={"prn":student_obj,"class_teacher":class_teacher_obj,"event_teacher":event_teacher_obj,"status":"Fail"})
+        serializer=EventSerializer(data={"prn":student_obj.id,"class_teacher":class_teacher_obj.id,"event_teacher":event_teacher_obj.id,"status":"Fail"})
 
         if serializer.is_valid():
             serializer.save()

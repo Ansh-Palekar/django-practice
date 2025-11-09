@@ -27,7 +27,7 @@ def fetchForClassTeacher(request):
         return Response({"message":"Teacher Not Present"})
     
     try:
-        event_list=Event.objects.filter(status="Fail",class_teacher=teacher_obj)  #Returns List of Event Objects whose status=Fail
+        event_list=Event.objects.filter(status="Pass",class_teacher=teacher_obj)  #Returns List of Event Objects whose status=Fail
     except Exception as e:
         return Response({"message":f"{e}"})
     
@@ -39,3 +39,28 @@ def fetchForClassTeacher(request):
             student_names.append(name)
 
     return Response({"student_list":student_names})
+
+@api_view(["GET"])
+def fetchForEventTeacher(request):
+    student_names=[]
+    teacher_name=request.query_params.get("event_teacher_name")
+
+    try:
+        teacher_obj=Teacher.objects.get(name=teacher_name)
+    except Exception as e:
+        return Response({"message":f"{e}"})
+    
+    try:
+        event_list=Event.objects.filter(status="Fail",event_teacher=teacher_obj)
+    except Exception as e:
+        return Response({"messsage":f"{e}"})
+    
+    for student in event_list:
+        name=student.prn.name
+        if name not in student_names:
+            student_names.append(name)
+
+    return Response({"student_list":student_names})
+    
+
+    
