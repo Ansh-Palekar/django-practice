@@ -17,7 +17,6 @@ def loginTeacher(request):
 
 @api_view(["GET"])
 def fetchForClassTeacher(request):
-
     student_names=[]
     teacher_division= request.query_params.get("division")
 
@@ -25,13 +24,12 @@ def fetchForClassTeacher(request):
         teacher_obj=Teacher.objects.get(division=teacher_division)
     except:
         return Response({"message":"Teacher Not Present"})
-    
+
     try:
         event_list=Event.objects.filter(status="Pass",class_teacher=teacher_obj)  #Returns List of Event Objects whose status=Fail
     except Exception as e:
         return Response({"message":f"{e}"})
-    
-    
+
     for student in event_list:
         name=student.prn.name
         if name not in student_names:
@@ -75,8 +73,36 @@ def approve(request):
         event_obj=Event.objects.get(prn=student_obj)
         event_obj.status="Pass"
         event_obj.save()
-        
+
     except Exception as e:
         return Response({"message":f"{e}"})    
     return Response({"message":"Student Approved"})
 
+@api_view(["POST"])
+def markAttendance(request):
+    student_name=request.data.get("student_name")
+    try:
+        student_obj=Student.objects.get(name=student_name)
+    except Exception as e:
+        return Response({"message":f"{e}"})
+    
+    try:
+        event_obj=Event.objects.get(prn=student_obj)
+
+    except Exception as e:
+        return Response({"message":f"{e}"})
+
+    student_obj.attendance+=1
+
+    '''
+    
+    try:
+        student_obj.save()
+        event_obj.delete()
+    except Exception as e:
+        return Response({"message":f"{e}"})
+
+    '''
+
+
+    return Response({"message":"Attendance Marked"})
