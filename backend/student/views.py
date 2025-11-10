@@ -15,7 +15,6 @@ def check(request):
 #Login Student
 @api_view(["POST"]) 
 def loginStudent(request):
-
     gmail=request.data.get("gmail")
     password=request.data.get("password")
 
@@ -32,23 +31,21 @@ def loginStudent(request):
 
 
 
-
 @api_view(["POST"])
 def submitForm(request):
     division=request.data.get("division")
-    event_teacher=request.data.get("event_teacher")
     prn=request.data.get("prn")
+    event_name=request.data.get("event_name")
 
     try:
-        class_teacher_obj=Teacher.objects.get(division=division)
-        event_teacher_obj=Teacher.objects.get(name=event_teacher)    
+        class_teacher_obj=Teacher.objects.get(division=division) 
         student_obj=Student.objects.get(prn=prn)
 
     except:
         return Response({"message":"Teacher Not Found"})
     
     try:
-        serializer=EventSerializer(data={"prn":student_obj.id,"class_teacher":class_teacher_obj.id,"event_teacher":event_teacher_obj.id,"status":"Fail"})
+        serializer=EventSerializer(data={"prn":student_obj.id,"class_teacher":class_teacher_obj.id,"status":"Fail","event_name":event_name})
 
         if serializer.is_valid():
             serializer.save()

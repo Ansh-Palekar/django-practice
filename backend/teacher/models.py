@@ -11,11 +11,13 @@ class Teacher(models.Model):
 class Event(models.Model):
     prn=models.ForeignKey(Student,on_delete=models.CASCADE)
     class_teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,related_name="class_teacher")
-    event_teacher=models.ForeignKey(Teacher,on_delete=models.CASCADE,related_name="event_teacher")
     status=models.CharField(max_length=100)
+    certificate=models.ImageField(null=True, blank=True)
+    event_name=models.CharField(max_length=300,null=True)
 
 
-  
-
+class EventName(models.Model):
+    event_name=models.CharField(max_length=100)
+    faculty_name=models.ForeignKey(Teacher,on_delete=models.CASCADE)
 
     

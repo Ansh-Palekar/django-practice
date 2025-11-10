@@ -3,3 +3,4 @@ psycopg2
 django-restframework
 django-cors-headers
 djangorestframework
+Pillow

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from student.models import Student
-from .models import Event,Teacher
+from .models import Event,Teacher,EventName
 from .serializer import EventSerializer
 
 
@@ -11,7 +11,6 @@ from .serializer import EventSerializer
 def loginTeacher(request):
     gmail=request.data.get("gmail")
     password=request.data.get("password")
-
     return Response({"message":"Teacher login"})
 
 
@@ -41,15 +40,22 @@ def fetchForClassTeacher(request):
 @api_view(["GET"])
 def fetchForEventTeacher(request):
     student_names=[]
-    teacher_name=request.query_params.get("event_teacher_name")
+    event_name=request.query_params.get("event_name")
+    teacher_name=request.query_params.get("teacher_name")
 
     try:
-        teacher_obj=Teacher.objects.get(name=teacher_name)
+        event_name_obj=EventName.objects.get(event_name=event_name)
+        if teacher_name==event_name_obj.faculty_name.name:
+            teacher_obj=event_name_obj.faculty_name
+
+        else:
+            return Response({"student_list":[]})
+    
     except Exception as e:
         return Response({"message":f"{e}"})
     
     try:
-        event_list=Event.objects.filter(status="Fail",event_teacher=teacher_obj)
+        event_list=Event.objects.filter(status="Fail",event_name=event_name)
     except Exception as e:
         return Response({"messsage":f"{e}"})
     
@@ -93,16 +99,12 @@ def markAttendance(request):
         return Response({"message":f"{e}"})
 
     student_obj.attendance+=1
-
+    student_obj.save()
     '''
-    
     try:
-        student_obj.save()
         event_obj.delete()
     except Exception as e:
         return Response({"message":f"{e}"})
 
     '''
-
-
     return Response({"message":"Attendance Marked"})
