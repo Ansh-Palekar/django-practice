@@ -40,17 +40,12 @@ def fetchForClassTeacher(request):
 @api_view(["GET"])
 def fetchForEventTeacher(request):
     student_names=[]
-    event_name=request.query_params.get("event_name")
     teacher_name=request.query_params.get("teacher_name")
-
     try:
-        event_name_obj=EventName.objects.get(event_name=event_name)
-        if teacher_name==event_name_obj.faculty_name.name:
-            teacher_obj=event_name_obj.faculty_name
+        teacher_obj=Teacher.objects.get(name=teacher_name)
+        event_name_obj=EventName.objects.get(faculty_name=teacher_obj)
+        event_name=event_name_obj.event_name
 
-        else:
-            return Response({"student_list":[]})
-    
     except Exception as e:
         return Response({"message":f"{e}"})
     
@@ -105,6 +100,7 @@ def markAttendance(request):
         event_obj.delete()
     except Exception as e:
         return Response({"message":f"{e}"})
-
     '''
+
+    
     return Response({"message":"Attendance Marked"})
