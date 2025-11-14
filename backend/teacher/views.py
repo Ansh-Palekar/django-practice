@@ -11,7 +11,14 @@ from .serializer import EventSerializer
 def loginTeacher(request):
     gmail=request.data.get("gmail")
     password=request.data.get("password")
-    return Response({"message":"Teacher login"})
+
+    try:
+        teacher_obj=Teacher.objects.get(gmail=gmail,password=password)
+        return Response({"message":"SuccessFull"})
+    except Exception as e:
+        print(e)
+    
+    return Response({"message":"Failed"})
 
 
 @api_view(["GET"])

@@ -17,16 +17,13 @@ def check(request):
 def loginStudent(request):
     gmail=request.data.get("gmail")
     password=request.data.get("password")
-
     try:
         student_obj=Student.objects.get(gmail=gmail)
     except:
         return Response({"message":"User Not Found"})
     
-   
     if student_obj.gmail==gmail and student_obj.password==password:
-        return Response({"message":"Login SuccesFull"})
-    
+        return Response({"message":"SuccessFull"})
     return Response({"message":"Failed"})
 
 
