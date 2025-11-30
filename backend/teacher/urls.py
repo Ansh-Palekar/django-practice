@@ -6,5 +6,6 @@ urlpatterns=[
     path("fetchForClassTeacher/",views.fetchForClassTeacher),
     path("fetchForEventTeacher/",views.fetchForEventTeacher),
     path("approve/",views.approve),
-    path("markAttendance/",views.markAttendance)
+    path("markAttendance/",views.markAttendance),
+    path("approveAttendance/",views.approveAttendance)
 ]

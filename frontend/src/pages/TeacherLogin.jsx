@@ -1,38 +1,31 @@
-
 import { useState } from "react";
 import styles from "../css/TeacherLogin.module.css";
 import {useNavigate} from 'react-router'
 import axios, { Axios } from "axios";
 
-
 export const TeacherLogin=()=>{
     const navigate=useNavigate()
-    const [gmail,setGmail]=useState()
-    const [password,setPassword]=useState()
-
+    const [gmail,setGmail]=useState("")
+    const [password,setPassword]=useState("")
     const handleGmail = (e) => setGmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
-
-
+    
     const handleSubmit=async()=>{
         
         const response=await axios.post("http://127.0.0.1:8000/loginTeacher/",{
                     "gmail":gmail,
                     "password":password            
         })  
-
-        console.log(response)
-
         if(response.data.message=="SuccessFull")
         {
+            localStorage.setItem("teacher_name",response.data.name)
+
             navigate("/teacherMain") 
         }
         else{
             console.log("Problem in Teacher Login")
         }
     }
-
-
 
     return(
          <div className={styles.container}>

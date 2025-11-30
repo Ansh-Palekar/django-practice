@@ -5,16 +5,14 @@ from student.models import Student
 from .models import Event,Teacher,EventName
 from .serializer import EventSerializer
 
-
 # Create your views here.
 @api_view(["POST"])
 def loginTeacher(request):
     gmail=request.data.get("gmail")
     password=request.data.get("password")
-
     try:
         teacher_obj=Teacher.objects.get(gmail=gmail,password=password)
-        return Response({"message":"SuccessFull"})
+        return Response({"message":"SuccessFull","name":teacher_obj.name,"division":teacher_obj.division})
     except Exception as e:
         print(e)
     
@@ -24,20 +22,24 @@ def loginTeacher(request):
 @api_view(["GET"])
 def fetchForClassTeacher(request):
     student_names=[]
-    teacher_division= request.query_params.get("division")
-
+    teacher_name= request.query_params.get("teacher_name")
     try:
-        teacher_obj=Teacher.objects.get(division=teacher_division)
-    except:
+        teacher_obj=Teacher.objects.get(name=teacher_name)
+    except Exception as e:
+        print(e)
         return Response({"message":"Teacher Not Present"})
 
     try:
-        event_list=Event.objects.filter(status="Pass",class_teacher=teacher_obj)  #Returns List of Event Objects whose status=Fail
+        event_list=Event.objects.filter(status="True",class_teacher=teacher_obj)  #Returns List of Event Objects whose status=Fail
     except Exception as e:
+        print(e)
         return Response({"message":f"{e}"})
 
+    print(event_list)
     for student in event_list:
+        print("inside loop")
         name=student.prn.name
+        print(name)
         if name not in student_names:
             print(name)
             student_names.append(name)
@@ -90,8 +92,11 @@ def approve(request):
 def markAttendance(request):
     student_name=request.data.get("student_name")
     try:
+        print(student_name)
         student_obj=Student.objects.get(name=student_name)
+    
     except Exception as e:
+        print("eXCEPTIONS HAI BHAI")
         return Response({"message":f"{e}"})
     
     try:
@@ -102,12 +107,37 @@ def markAttendance(request):
 
     student_obj.attendance+=1
     student_obj.save()
-    '''
+
     try:
         event_obj.delete()
+        print("Object delete")
     except Exception as e:
         return Response({"message":f"{e}"})
-    '''
-
     
-    return Response({"message":"Attendance Marked"})
+    return Response({"success":True, "message":"Attendance Marked"})
+
+
+@api_view(["POST"])
+def approveAttendance(request):
+    student_name=request.data.get("student_name")
+    try:
+        print(student_name)
+        student_obj=Student.objects.get(name=student_name)
+    
+    except Exception as e:
+        print(e)
+        return Response({"message":f"{e}"})
+    
+    try:
+        event_obj=Event.objects.get(prn=student_obj)
+
+    except Exception as e:
+        return Response({"message":f"{e}"})
+    try:
+        event_obj.status="True"
+        event_obj.save()
+        print("Object SAVED")
+    except Exception as e:
+        return Response({"message":f"{e}"})
+    
+    return Response({"success":True, "message":"Attendance Marked"})

@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import serializers
 from .models import Student
-from teacher.models import Teacher
+from teacher.models import Teacher,Event
 from teacher.serializer import TeacherSerializer,EventSerializer
 
 # Create your views here.
