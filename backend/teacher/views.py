@@ -15,7 +15,6 @@ def loginTeacher(request):
         return Response({"message":"SuccessFull","name":teacher_obj.name,"division":teacher_obj.division})
     except Exception as e:
         print(e)
-    
     return Response({"message":"Failed"})
 
 
