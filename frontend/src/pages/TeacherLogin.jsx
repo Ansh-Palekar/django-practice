@@ -12,7 +12,7 @@ export const TeacherLogin=()=>{
     
     const handleSubmit=async()=>{
         
-        const response=await axios.post("http://127.0.0.1:8000/loginTeacher/",{
+        const response=await axios.post("http://43.205.96.25/loginTeacher/",{
                     "gmail":gmail,
                     "password":password            
         })  
