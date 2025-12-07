@@ -83,10 +83,10 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Event-Database",
-        'USER':'postgres',
-        'PASSWORD':'1234',
-        'HOST':'localhost'
+        "NAME": "event_db",
+        'USER':'ansh',
+        'PASSWORD':'anshpalekar',
+        'HOST': 'my-database.cr0awwy6claj.ap-south-1.rds.amazonaws.com'
     }
 }
 
@@ -126,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

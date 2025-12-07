@@ -27,7 +27,6 @@ def loginStudent(request):
     return Response({"message":"Failed"})
 
 
-
 @api_view(["POST"])
 def submitForm(request):
     division=request.data.get("division")
@@ -38,8 +37,6 @@ def submitForm(request):
 
     if certificate:
         status="Pass"
-
-
     try:
         class_teacher_obj=Teacher.objects.get(division=division) 
         student_obj=Student.objects.get(prn=prn)
