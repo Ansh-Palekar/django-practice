@@ -26,7 +26,7 @@ export const StudentMain=()=>{
 
            try {
             const response = await axios.post(
-                "http://127.0.0.1:8000/submitForm/",
+                "http://my-alb-1422355718.ap-south-1.elb.amazonaws.com/submitForm/",
                 formData,
                 {
                     headers: {

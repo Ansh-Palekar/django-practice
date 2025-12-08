@@ -16,7 +16,7 @@ export const TeacherLogin=()=>{
 
 
         
-        const response=await axios.post("http://my-alb-1422355718.ap-south-1.elb.amazonaws.com:8000/loginTeacher/",{
+        const response=await axios.post("http://my-alb-1422355718.ap-south-1.elb.amazonaws.com/loginTeacher/",{
                     "gmail":gmail,
                     "password":password            
         })  
