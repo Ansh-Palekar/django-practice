@@ -9,7 +9,8 @@ from teacher.serializer import TeacherSerializer,EventSerializer
 # Create your views here.
 @api_view(["GET"])
 def check(request):
-    return Response({"message":"I am Ansh"})
+    teacher_names = Teacher.objects.values_list("Anil", flat=True)
+    return Response(list(teacher_names))
 
 
 #Login Student
