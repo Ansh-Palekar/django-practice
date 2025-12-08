@@ -86,7 +86,8 @@ DATABASES = {
         "NAME": "event_db",
         'USER':'ansh',
         'PASSWORD':'anshpalekar',
-        'HOST': 'my-database.cr0awwy6claj.ap-south-1.rds.amazonaws.com'
+        'HOST': 'my-database.cr0awwy6claj.ap-south-1.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
