@@ -12,6 +12,10 @@ export const TeacherLogin=()=>{
     
     const handleSubmit=async()=>{
         
+        try{
+
+
+        
         const response=await axios.post("http://15.206.143.199:8000/loginTeacher/",{
                     "gmail":gmail,
                     "password":password            
@@ -24,6 +28,12 @@ export const TeacherLogin=()=>{
         }
         else{
             console.log("Problem in Teacher Login")
+        }
+
+        }
+        catch(err)
+        {
+            console.log(err)
         }
     }
 
