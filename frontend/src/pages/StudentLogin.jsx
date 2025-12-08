@@ -41,7 +41,7 @@ export const StudentLogin=()=>{
     return(
           <div className={styles.container}>
             <form>
-                <h3 className={styles.title}>This is Student Login</h3>
+                <h3 className={styles.title}>This is Student Login  A Slight change</h3>
                 <div className={styles.formBox}>
                     <input
                         type="text"
