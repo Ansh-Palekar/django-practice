@@ -1,0 +1,81 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: #f5f6fa;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+/* Dropdown wrapper */
+.dropdownWrapper {
+    width: 70%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: 0.2s;
+}
+
+/* Main dropdown button */
+.dropdownButton {
+    width: 100%;
+    padding: 14px;
+    background: #4a90e2;
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.dropdownButton:hover {
+    background: #357abd;
+}
+.dropdownButton:active {
+    transform: scale(0.98);
+}
+
+/* Dropdown list container */
+.dropdownList {
+    margin-top: 18px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ececec;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Approve button */
+.approveButton {
+    background: #27ae60;
+    color: white;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.approveButton:hover {
+    background: #1e8b4d;
+}
+
+.approveButton:active {
+    transform: scale(0.97);
+}
