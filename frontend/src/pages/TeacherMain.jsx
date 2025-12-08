@@ -10,13 +10,13 @@ export function TeacherMain() {
   useEffect(() => {
     const teacher_name=localStorage.getItem("teacher_name")
     const fetchForClassTeacher=async()=>{
-          const res=await axios.get(`http://localhost:8000/fetchForClassTeacher/?teacher_name=${teacher_name}`)
+          const res=await axios.get(`http://15.206.143.199/fetchForClassTeacher/?teacher_name=${teacher_name}`)
           print(res.data)
           setCt(res.data.student_list)
     }
 
     const fetchForEventTeacher=async()=>{
-        const res=await axios.get(`http://localhost:8000/fetchForEventTeacher/?teacher_name=${teacher_name}`)
+        const res=await axios.get(`http://15.206.143.199/fetchForEventTeacher/?teacher_name=${teacher_name}`)
         setEt(res.data.student_list)
     }
 
