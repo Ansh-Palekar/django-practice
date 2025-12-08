@@ -13,7 +13,7 @@ export const StudentLogin=()=>{
 
     const handleSubmit=async()=>{
         try{
-            const response=await axios.post("http://15.206.143.199:8000/loginStud/",
+            const response=await axios.post("my-alb-1422355718.ap-south-1.elb.amazonaws.com:8000/loginStud/",
                 {
                     "gmail":gmail,
                     "password":password

@@ -16,14 +16,13 @@ export const TeacherLogin=()=>{
 
 
         
-        const response=await axios.post("http://15.206.143.199:8000/loginTeacher/",{
+        const response=await axios.post("http://my-alb-1422355718.ap-south-1.elb.amazonaws.com:8000/loginTeacher/",{
                     "gmail":gmail,
                     "password":password            
         })  
         if(response.data.message=="SuccessFull")
         {
             localStorage.setItem("teacher_name",response.data.name)
-
             navigate("/teacherMain") 
         }
         else{
