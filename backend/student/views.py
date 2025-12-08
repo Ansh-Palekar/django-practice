@@ -9,7 +9,7 @@ from teacher.serializer import TeacherSerializer,EventSerializer
 # Create your views here.
 @api_view(["GET"])
 def check(request):
-    teacher_names = Teacher.objects.values_list("Anil", flat=True)
+    teacher_names = Teacher.objects.values_list("name", flat=True)
     return Response(list(teacher_names))
 
 
