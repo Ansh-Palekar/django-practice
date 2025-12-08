@@ -10,13 +10,13 @@ export function TeacherMain() {
   useEffect(() => {
     const teacher_name=localStorage.getItem("teacher_name")
     const fetchForClassTeacher=async()=>{
-          const res=await axios.get(`http://15.206.143.199/fetchForClassTeacher/?teacher_name=${teacher_name}`)
+          const res=await axios.get(`http://15.206.143.199:8000/fetchForClassTeacher/?teacher_name=${teacher_name}`)
           print(res.data)
           setCt(res.data.student_list)
     }
 
     const fetchForEventTeacher=async()=>{
-        const res=await axios.get(`http://15.206.143.199/fetchForEventTeacher/?teacher_name=${teacher_name}`)
+        const res=await axios.get(`http://15.206.143.199:8000/fetchForEventTeacher/?teacher_name=${teacher_name}`)
         setEt(res.data.student_list)
     }
 
@@ -28,7 +28,7 @@ export function TeacherMain() {
 
 
   const markAttendance=async(student_name)=>{
-      const res=await axios.post(`http://localhost:8000/markAttendance/`,{student_name:student_name})
+      const res=await axios.post(`http://15.206.143.199:8000/markAttendance/`,{student_name:student_name})
       if(res.data.success === true){
         return true
       }
@@ -36,7 +36,7 @@ export function TeacherMain() {
   }
 
   const approveAttendance=async(student_name)=>{
-      const res=await axios.post(`http://localhost:8000/approveAttendance/`,{student_name:student_name})
+      const res=await axios.post(`http://15.206.143.199:8000/approveAttendance/`,{student_name:student_name})
       if(res.data.success === true){
         return true
       }
