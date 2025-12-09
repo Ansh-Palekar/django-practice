@@ -14,9 +14,7 @@ export const TeacherLogin=()=>{
         
         try{
 
-
-        
-        const response=await axios.post("http://my-alb-1422355718.ap-south-1.elb.amazonaws.com/loginTeacher/",{
+        const response=await axios.post("http://my-load-balancer-730870181.ap-south-1.elb.amazonaws.com/loginTeacher/",{
                     "gmail":gmail,
                     "password":password            
         })  
