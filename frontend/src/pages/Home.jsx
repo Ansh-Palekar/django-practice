@@ -1,4 +1,3 @@
-
 import styles from "../css/Home.module.css";
 import {useNavigate} from 'react-router'
 
@@ -21,4 +20,3 @@ export const Home=()=>{
         </div>
     )
 }
-
