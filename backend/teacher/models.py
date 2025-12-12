@@ -15,7 +15,6 @@ class Event(models.Model):
     certificate=models.ImageField(null=True, blank=True)
     event_name=models.CharField(max_length=300,null=True)
 
-
 class EventName(models.Model):
     event_name=models.CharField(max_length=100)
     faculty_name=models.ForeignKey(Teacher,on_delete=models.CASCADE)

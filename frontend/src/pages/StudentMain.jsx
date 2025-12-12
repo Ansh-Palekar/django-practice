@@ -26,7 +26,7 @@ export const StudentMain=()=>{
 
            try {
             const response = await axios.post(
-                "http://my-load-balancer-722992164.ap-south-1.elb.amazonaws.com/submitForm/",
+                "http://my-load-balancer-1993700356.ap-south-1.elb.amazonaws.com/submitForm/",
                 formData,
                 {
                     headers: {

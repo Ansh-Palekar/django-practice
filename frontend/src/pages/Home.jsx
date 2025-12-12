@@ -15,7 +15,7 @@ export const Home=()=>{
 
     return(
          <div className={styles.container}>
-            <button className={styles.button} onClick={redirectTeacher}>Teacher Page A Slight Change</button>
+            <button className={styles.button} onClick={redirectTeacher}>Teacher Page A Different Change</button>
             <button className={styles.button} onClick={redirectStudent}>Student Page</button>
         </div>
     )
