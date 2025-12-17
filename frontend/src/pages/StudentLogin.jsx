@@ -13,7 +13,7 @@ export const StudentLogin=()=>{
 
     const handleSubmit=async()=>{
         try{
-            const response=await axios.post("my-load-balancer-1993700356.ap-south-1.elb.amazonaws.com/loginStud/",
+            const response=await axios.post("http://my-alb-1426385350.ap-south-1.elb.amazonaws.com/loginStud/",
                 {
                     "gmail":gmail,
                     "password":password

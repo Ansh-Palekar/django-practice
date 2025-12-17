@@ -13,7 +13,7 @@ export function TeacherMain() {
 
     const fetchForClassTeacher = async () => {
       const res = await axios.get(
-        `http://my-load-balancer-1993700356.ap-south-1.elb.amazonaws.com/fetchForClassTeacher/?teacher_name=${teacher_name}`
+        `http://my-alb-1426385350.ap-south-1.elb.amazonaws.com/fetchForClassTeacher/?teacher_name=${teacher_name}`
       );
       console.log(res.data);
       setCt(res.data.student_list);
@@ -21,7 +21,7 @@ export function TeacherMain() {
 
     const fetchForEventTeacher = async () => {
       const res = await axios.get(
-        `http://my-load-balancer-1993700356.ap-south-1.elb.amazonaws.com/fetchForEventTeacher/?teacher_name=${teacher_name}`
+        `http://my-alb-1426385350.ap-south-1.elb.amazonaws.com/fetchForEventTeacher/?teacher_name=${teacher_name}`
       );
       setEt(res.data.student_list);
     };
@@ -32,7 +32,7 @@ export function TeacherMain() {
 
   const markAttendance = async (student_name) => {
     const res = await axios.post(
-      `http://my-load-balancer-1993700356.ap-south-1.elb.amazonaws.com/markAttendance/`,
+      `http://my-alb-1426385350.ap-south-1.elb.amazonaws.com/markAttendance/`,
       { student_name }
     );
     return res.data.success === true;
@@ -40,7 +40,7 @@ export function TeacherMain() {
 
   const approveAttendance = async (student_name) => {
     const res = await axios.post(
-      `http://my-load-balancer-1993700356.ap-south-1.elb.amazonaws.com/approveAttendance/`,
+      `http://my-alb-1426385350.ap-south-1.elb.amazonaws.com/approveAttendance/`,
       { student_name }
     );
     return res.data.success === true;

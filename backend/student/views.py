@@ -12,6 +12,10 @@ def check(request):
     teacher_names = Teacher.objects.values_list("name", flat=True)
     return Response(list(teacher_names))
 
+@api_view(["GET"])
+def health_check(request):
+    return Response({"message": "Hello"}, status=200)
+
 
 #Login Student
 @api_view(["POST"]) 
